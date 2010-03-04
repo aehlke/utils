@@ -49,6 +49,11 @@ set shiftround
 " I - no intro message when starting vim fileless
 set shortmess=aotTWI
 
+" Highlight word under cursor
+"highlight flicker gui=bold guifg=white
+"au CursorMoved <buffer> exe 'match flicker /\V\<'.escape(expand('<cword>'), '/').'\>/'
+
+
 
 " Navigation/search
  
@@ -67,6 +72,8 @@ set smartcase
 set hlsearch
 " don't move the cursor to the start of the line when changing buffers
 set nostartofline
+
+
 
 
 " Formatting
@@ -108,8 +115,13 @@ set lbr
 set shiftround
 
 
+
+
 " Behavior
- 
+
+" <Leader> key
+let mapleader = "," 
+
 " Allow folding to play nice with Python and other well-indented code
 set foldmethod=indent
 " Don't close all folds by default when file opens
@@ -171,6 +183,8 @@ set foldmethod=marker
 set foldclose=all
  
  
+
+
 "
 " Settings for specific versions of Vim
 "
@@ -178,7 +192,7 @@ set foldclose=all
 " MacVim
 if has("gui_macvim")
 "    set transparency=5
-    set guifont=Inconsolata:h14
+    "set guifont=Inconsolata:h14
     set lines=60
     set formatoptions-=t
     set formatoptions-=c
@@ -227,7 +241,10 @@ inoremap <silent> <C-a> <ESC>u:set paste<CR>.:set nopaste<CR>gi
 "ignore indent mode for shift-backspace
 inoremap <S-BS> <Esc>xa
 
+
 " Normal-mode remappings {{{
+nore ; :
+nore \ ;
 " spacebar (in command mode) inserts a single character before the cursor
 nmap <Space> i <Esc>r
 " Custom mapping shortcut for :nohl
@@ -256,6 +273,25 @@ nmap <S-Left> :bp<CR>
 " make help easier to navigate
 autocmd FileType help nnoremap <buffer> <CR> <C-]>
 autocmd FileType help nnoremap <buffer> <BS> <C-T>
+
+
+
+
+" Plugin mappings
+
+" FuzzyFinder
+"map <leader>t :FuzzyFinderTextMate<CR>
+cd ~/workspace/manabi
+nmap <leader>F :FufFile<CR>
+nmap <leader>t :FufFileRecursive<CR>
+nmap <leader>f :FufFileWithCurrentBufferDir<CR>
+nmap <leader>d :FufDir<CR>
+nmap <leader>b :FufBuffer<CR>
+let g:fuf_dir_exclude = '\v(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+let g:fuf_mrufile_exclude = '\v\~$|\.(bak|sw[mnop])$|^(\/\/|\\\\|\/mnt\/|\/media\/)'
+" Ignore the dojango directory since it's huge and spammy
+let g:fuf_file_exclude = '\v\~$|dojango|\.(o|exe|dll|bak|sw[mnop]|zip|pyc|DS_Store|tar\.gz)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+
 
 
 
