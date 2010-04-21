@@ -9,10 +9,12 @@ set nocompatible
  
 " Syntax highlighting!
 syntax on
-set t_Co=256
-colorscheme wombat256
-" Colorize for a dark background
-set background=dark
+if &term=="builtin_gui"
+    set t_Co=256
+    colorscheme wombat256
+    " Colorize for a dark background
+    set background=dark
+endif
 " Show ruler line at bottom of each buffer
 set ruler
 " Show additional info in the command line (very last line on screen) where
@@ -277,6 +279,8 @@ autocmd FileType help nnoremap <buffer> <BS> <C-T>
 
 
 
+" Plugins
+"
 " Plugin mappings
 
 " FuzzyFinder
@@ -291,6 +295,9 @@ let g:fuf_dir_exclude = '\v(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 let g:fuf_mrufile_exclude = '\v\~$|\.(bak|sw[mnop])$|^(\/\/|\\\\|\/mnt\/|\/media\/)'
 " Ignore the dojango directory since it's huge and spammy
 let g:fuf_file_exclude = '\v\~$|dojango|\.(o|exe|dll|bak|sw[mnop]|zip|pyc|DS_Store|tar\.gz)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+
+" Plugin settings
+let g:autoclose_on = 0
 
 
 
